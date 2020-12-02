@@ -10,11 +10,11 @@
                         </div>
                         <!-- Detalhles do Currículo -->
                         <div class="row-span-2">
-                          
+                          <details-profile title="Details" :user="user"></details-profile>
                         </div>
                         <!-- Conteúdo do Currículo -->
                         <div class="row-span-2 col-span-2">
-                          <about-profile :user="user"></about-profile>
+                          <about-profile title="About me" :user="user"></about-profile>
                         </div>
                     </div>
                 </div>
@@ -25,14 +25,16 @@
 
 <script>
 import AppLayout from "@/Layouts/AppLayout";
-import HeaderProfile from '@/Components/HeaderProfile.vue';
-import AboutProfile from '@/Components/AboutProfile.vue';
+import HeaderProfile from '@/Components/HeaderProfile';
+import AboutProfile from '@/Components/AboutProfile';
+import DetailsProfile from '@/Components/DetailsProfile';
 
 export default {
     components: {
         AppLayout,
         HeaderProfile,
-        AboutProfile
+        AboutProfile,
+        DetailsProfile,
     },
     props: {
         user: Object
