@@ -59,6 +59,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    protected $with = [
+        'profile',
+        'links',
+        'skills',
+        'contents'
+    ];
+
     /**
      * Relacionamentos
      */

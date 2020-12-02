@@ -17,6 +17,8 @@ class Content extends Model
         'category_id'
     ];
 
+    protected $with = ['category'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

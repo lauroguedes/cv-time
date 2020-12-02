@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('CvIndex');
+    return Inertia\Inertia::render('Curriculum');
 })->name('dashboard');
