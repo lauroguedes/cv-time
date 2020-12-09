@@ -63,7 +63,7 @@ class User extends Authenticatable
         'profile',
         'links',
         'skills',
-        'contents'
+        'employmentHistories',
     ];
 
     /**
@@ -84,8 +84,8 @@ class User extends Authenticatable
         return $this->hasMany(Skill::class);
      }
 
-     public function contents()
+     public function employmentHistories()
      {  
-        return $this->hasMany(Content::class);
+        return $this->hasMany(EmploymentHistory::class);
      } 
 }

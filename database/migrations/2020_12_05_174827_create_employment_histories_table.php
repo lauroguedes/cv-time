@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentsTable extends Migration
+class CreateEmploymentHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('employment_histories', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            
-            $table->foreignId('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
 
             $table->string('title');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }
@@ -37,6 +35,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('employment_histories');
     }
 }

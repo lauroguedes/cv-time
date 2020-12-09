@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class EmploymentHistory extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'icon',
-        'name'
+        'title',
+        'start_date',
+        'end_date',
+        'description',
     ];
 
-    public function contents()
+    public function user()
     {
-        return $this->hasMany(Content::class);
+        return $this->belongsTo(User::class);
     }
 }

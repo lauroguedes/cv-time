@@ -16,19 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(5)->create();
-
         User::factory(5)
             ->hasProfile(1)
             ->hasLinks(5)
             ->hasSkills(10)
-            ->hasContents(3, new Sequence(
-                ['category_id' => 1],
-                ['category_id' => 2],
-                ['category_id' => 3],
-                ['category_id' => 4],
-                ['category_id' => 5],
-            ))
+            ->hasEmploymentHistories(5)
             ->create();
     }
 }

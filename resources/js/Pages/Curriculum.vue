@@ -15,6 +15,7 @@
                         <!-- Conteúdo do Currículo -->
                         <div class="row-span-2 col-span-2">
                           <about-profile title="About me" :user="user"></about-profile>
+                          <employment-history title="Employment History" :employmentHistories="user.employment_histories"></employment-history>
                         </div>
                     </div>
                 </div>
@@ -28,6 +29,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import HeaderProfile from '@/Components/HeaderProfile';
 import AboutProfile from '@/Components/AboutProfile';
 import DetailsProfile from '@/Components/DetailsProfile';
+import EmploymentHistory from '@/Components/EmploymentHistory';
 
 export default {
     components: {
@@ -35,9 +37,10 @@ export default {
         HeaderProfile,
         AboutProfile,
         DetailsProfile,
+        EmploymentHistory,
     },
     props: {
-        user: Object
+        user: Object,
     }
 };
 </script>

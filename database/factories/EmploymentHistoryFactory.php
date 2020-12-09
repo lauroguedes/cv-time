@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Content;
+use App\Models\EmploymentHistory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ContentFactory extends Factory
+class EmploymentHistoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Content::class;
+    protected $model = EmploymentHistory::class;
 
     /**
      * Define the model's default state.

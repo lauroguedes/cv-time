@@ -11,7 +11,7 @@ class CurriculumController extends Controller
         $user = auth()->user();
 
         return inertia('Curriculum', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }
