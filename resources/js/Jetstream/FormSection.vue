@@ -5,11 +5,11 @@
             <template #description><slot name="description"></slot></template>
         </jet-section-title>
 
-        <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="my-5 md:mt-0 md:col-span-3">
             <form @submit.prevent="$emit('submitted')">
                 <div class="shadow overflow-hidden sm:rounded-md">
                     <div class="px-4 py-5 bg-white sm:p-6">
-                        <div class="grid grid-cols-6 gap-6">
+                        <div class="grid grid-cols-6 gap-2">
                             <slot name="form"></slot>
                         </div>
                     </div>

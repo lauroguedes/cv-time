@@ -12,7 +12,7 @@
     </ul>
     <div>
       <h3 class="text-gray-500">Date of Birth</h3>
-      <div>{{ user.profile.date_birth }}</div>
+      <div>{{ user.profile.date_birth | moment('DD/MM/YYYY') }}</div>
     </div>
   </div>
 </template>
