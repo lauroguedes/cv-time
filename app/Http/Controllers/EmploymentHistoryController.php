@@ -13,10 +13,27 @@ class EmploymentHistoryController extends Controller
     {
         Validator::make($request->all(), [
             'title' => 'required',
-            'start_date' => 'required'
-        ])->validate();
+            'start_date' => 'required'                                                                                                      
+        ])->validate();                                                                                         
 
         EmploymentHistory::create([
+            'title' => $request->title,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('curriculum');
+    }
+
+    public function update(Request $request, EmploymentHistory $employmentHistory)
+    {
+        Validator::make($request->all(), [
+            'title' => 'required',
+            'start_date' => 'required'                                                                                                      
+        ])->validate();
+
+        $employmentHistory->update([
             'title' => $request->title,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,

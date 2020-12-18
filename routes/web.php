@@ -27,5 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->group(function () {
             Route::post('/', [EmploymentHistoryController::class, 'store'])
                 ->name('store');
+            Route::put('/{employmentHistory}', [EmploymentHistoryController::class, 'update'])
+                ->name('update');
         });
 });

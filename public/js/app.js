@@ -2120,6 +2120,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2150,6 +2167,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       showForm: false,
+      update: false,
+      modelToUpdate: null,
       form: this.$inertia.form({
         _method: "POST",
         title: null,
@@ -2166,14 +2185,46 @@ __webpack_require__.r(__webpack_exports__);
     store: function store() {
       var _this = this;
 
+      if (this.update) {
+        this.form.put(route("employment-history.update", {
+          employmentHistory: this.modelToUpdate
+        }), {
+          preserveScroll: true,
+          onSuccess: function onSuccess() {
+            if (_.isEmpty(_this.formErrors)) {
+              _this.modelToUpdate = null;
+              _this.update = false;
+              setTimeout(function () {
+                _this.showForm = false;
+              }, 1000);
+            }
+          }
+        });
+        return;
+      }
+
       this.form.post(route("employment-history.store"), {
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          setTimeout(function () {
-            _this.showForm = false;
-          }, 2000);
+          if (_.isEmpty(_this.formErrors)) {
+            setTimeout(function () {
+              _this.showForm = false;
+            }, 1000);
+          }
         }
       });
+      return;
+    },
+    edit: function edit(id) {
+      var employmentHistory = _.find(this.employmentHistories, ["id", id]);
+
+      this.form.title = employmentHistory.title;
+      this.form.start_date = this.$moment(employmentHistory.start_date).toDate();
+      this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
+      this.form.description = employmentHistory.description;
+      this.modelToUpdate = id;
+      this.update = true;
+      this.showForm = true;
     },
     isEmpty: function isEmpty(obj) {
       return _.isEmpty(obj);
@@ -46680,9 +46731,23 @@ var render = function() {
                   [
                     _c("span", [_vm._v(_vm._s(employmentHistory.title))]),
                     _vm._v(" "),
-                    _vm._m(0, true),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.edit(employmentHistory.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                    ),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _vm._m(0, true)
                   ]
                 ),
                 _vm._v(" "),
@@ -46736,20 +46801,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400",
-        attrs: { href: "#" }
-      },
-      [_c("i", { staticClass: "fas fa-pencil-alt" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

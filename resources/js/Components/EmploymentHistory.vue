@@ -35,23 +35,37 @@
           </div>
           <div class="col-span-3">
             <jet-label for="start_date" value="Start Date" />
-            <date-picker v-model="form.start_date" format="DD/MM/YYYY" input-class="form-input rounded-md shadow-sm mt-1 w-full"></date-picker>
+            <date-picker
+              v-model="form.start_date"
+              format="DD/MM/YYYY"
+              input-class="form-input rounded-md shadow-sm mt-1 w-full"
+            ></date-picker>
             <jet-input-error :message="formErrors.start_date" class="mt-2" />
           </div>
           <div class="col-span-3">
             <jet-label for="end_date" value="End Date" />
-            <date-picker v-model="form.end_date" format="DD/MM/YYYY" input-class="form-input rounded-md shadow-sm mt-1 w-full"></date-picker>
+            <date-picker
+              v-model="form.end_date"
+              format="DD/MM/YYYY"
+              input-class="form-input rounded-md shadow-sm mt-1 w-full"
+            ></date-picker>
             <jet-input-error :message="formErrors.end_date" class="mt-2" />
           </div>
           <div class="col-span-6">
             <jet-label for="description" value="Description" />
-            <textarea v-model="form.description" rows="5" class="form-input rounded-md shadow-sm mt-1 w-full"></textarea>
+            <textarea
+              v-model="form.description"
+              rows="5"
+              class="form-input rounded-md shadow-sm mt-1 w-full"
+            ></textarea>
             <jet-input-error :message="formErrors.description" class="mt-2" />
           </div>
         </template>
         <template #actions>
           <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-            <span class="text-green-400" v-if="isEmpty(formErrors)">Saved!</span>
+            <span class="text-green-400" v-if="isEmpty(formErrors)"
+              >Saved!</span
+            >
           </jet-action-message>
           <button
             type="button"
@@ -80,6 +94,7 @@
             <span>{{ employmentHistory.title }}</span>
             <a
               href="#"
+              @click.prevent="edit(employmentHistory.id)"
               class="ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400"
             >
               <i class="fas fa-pencil-alt"></i>
@@ -92,7 +107,9 @@
             </a>
           </h3>
           <div class="mb-2 text-gray-600">
-            <span>{{ employmentHistory.start_date | moment("DD/MM/YYYY") }}</span>
+            <span>{{
+              employmentHistory.start_date | moment("DD/MM/YYYY")
+            }}</span>
             <span class="text-indigo-400 font-bold"> to </span>
             <span v-if="employmentHistory.end_date">{{
               employmentHistory.end_date | moment("DD/MM/YYYY")
@@ -116,8 +133,8 @@ import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 
-import DatePicker from 'vue2-datepicker';
-import 'vue2-datepicker/index.css';
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 
 export default {
   props: {
@@ -134,13 +151,15 @@ export default {
     DatePicker,
   },
   computed: {
-    formErrors () {
+    formErrors() {
       return this.form.__inertia.page.props.errors;
-    }
+    },
   },
   data() {
     return {
       showForm: false,
+      update: false,
+      modelToUpdate: null,
       form: this.$inertia.form(
         {
           _method: "POST",
@@ -158,25 +177,60 @@ export default {
   },
   methods: {
     store() {
+      if (this.update) {
+        this.form.put(
+          route("employment-history.update", {
+            employmentHistory: this.modelToUpdate,
+          }),
+          {
+            preserveScroll: true,
+            onSuccess: () => {
+              if (_.isEmpty(this.formErrors)) {
+                this.modelToUpdate = null;
+                this.update = false;
+                setTimeout(() => {
+                  this.showForm = false;
+                }, 1000);
+              }
+            },
+          }
+        );
+        return;
+      }
       this.form.post(route("employment-history.store"), {
         preserveScroll: true,
         onSuccess: () => {
-          setTimeout(() => {
-            this.showForm = false;
-          }, 2000);
-        }
+          if (_.isEmpty(this.formErrors)) {
+            setTimeout(() => {
+              this.showForm = false;
+            }, 1000);
+          }
+        },
       });
+      return;
+    },
+    edit(id) {
+      let employmentHistory = _.find(this.employmentHistories, ["id", id]);
+
+      this.form.title = employmentHistory.title;
+      this.form.start_date = this.$moment(employmentHistory.start_date).toDate();
+      this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
+      this.form.description = employmentHistory.description;
+
+      this.modelToUpdate = id;
+      this.update = true;
+      this.showForm = true;
     },
     isEmpty(obj) {
       return _.isEmpty(obj);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-  .mx-datepicker {
-    width: 100%;
-    display: block;
-  }
+.mx-datepicker {
+  width: 100%;
+  display: block;
+}
 </style>
