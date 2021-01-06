@@ -51846,49 +51846,43 @@ var render = function() {
               "bg-white overflow-hidden shadow-xl sm:rounded-lg py-14 px-10"
           },
           [
-            _c(
-              "div",
-              {
-                staticClass: "grid grid-rows-3 grid-flow-col gap-x-4 gap-y-10"
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "col-span-3" },
-                  [_c("header-profile", { attrs: { user: _vm.user } })],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row-span-2" },
-                  [
-                    _c("details-profile", {
-                      attrs: { title: "Details", user: _vm.user }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "row-span-2 col-span-2" },
-                  [
-                    _c("about-profile", {
-                      attrs: { title: "About me", user: _vm.user }
-                    }),
-                    _vm._v(" "),
-                    _c("employment-history", {
-                      attrs: {
-                        title: "Employment History",
-                        employmentHistories: _vm.user.employment_histories
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]
-            )
+            _c("div", { staticClass: "grid grid-cols-12 gap-x-4 gap-y-10" }, [
+              _c(
+                "div",
+                { staticClass: "col-span-12" },
+                [_c("header-profile", { attrs: { user: _vm.user } })],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-span-3" },
+                [
+                  _c("details-profile", {
+                    attrs: { title: "Details", user: _vm.user }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-span-9" },
+                [
+                  _c("about-profile", {
+                    attrs: { title: "About me", user: _vm.user }
+                  }),
+                  _vm._v(" "),
+                  _c("employment-history", {
+                    attrs: {
+                      title: "Employment History",
+                      employmentHistories: _vm.user.employment_histories
+                    }
+                  })
+                ],
+                1
+              )
+            ])
           ]
         )
       ])
