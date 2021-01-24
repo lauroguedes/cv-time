@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="my-7 text-xl flex justify-between items-center">
+    <h2 id="employmentHistory" class="my-7 text-xl flex justify-between items-center">
       <div>
         <i class="fas fa-hard-hat mr-3 text-orange-400"></i>
         <span class="uppercase text-orange-400">{{ title }}</span>
@@ -99,12 +99,12 @@
             >
               <i class="fas fa-pencil-alt"></i>
             </a>
-            <a
-              href="#"
-              class="ml-3 transition duration-100 ease-in-out text-red-200 hover:text-red-400"
-            >
-              <i class="fas fa-trash-alt"></i>
-            </a>
+            <destroy-action
+              title="Delete Employment History"
+              :description="`Are you sure to delete '${employmentHistory.title}'? Confirm below.`"
+              action="employment-history.destroy"
+              :modelId="employmentHistory.id"
+            />
           </h3>
           <div class="mb-2 text-gray-600">
             <span>{{
@@ -132,6 +132,7 @@ import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
+import DestroyAction from "./DestroyAction";
 
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
@@ -149,6 +150,7 @@ export default {
     JetInputError,
     JetLabel,
     DatePicker,
+    DestroyAction,
   },
   computed: {
     formErrors() {
@@ -213,13 +215,16 @@ export default {
       let employmentHistory = _.find(this.employmentHistories, ["id", id]);
 
       this.form.title = employmentHistory.title;
-      this.form.start_date = this.$moment(employmentHistory.start_date).toDate();
+      this.form.start_date = this.$moment(
+        employmentHistory.start_date
+      ).toDate();
       this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
       this.form.description = employmentHistory.description;
 
       this.modelToUpdate = id;
       this.update = true;
       this.showForm = true;
+      window.location.href = '#employmentHistory'
     },
     isEmpty(obj) {
       return _.isEmpty(obj);

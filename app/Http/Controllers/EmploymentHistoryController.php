@@ -42,4 +42,11 @@ class EmploymentHistoryController extends Controller
 
         return redirect()->route('curriculum');
     }
+
+    public function destroy(EmploymentHistory $employmentHistory)
+    {
+        $employmentHistory->delete();
+
+        return redirect()->route('curriculum');
+    }
 }
