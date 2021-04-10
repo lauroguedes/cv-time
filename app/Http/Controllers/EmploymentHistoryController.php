@@ -13,8 +13,8 @@ class EmploymentHistoryController extends Controller
     {
         Validator::make($request->all(), [
             'title' => 'required',
-            'start_date' => 'required'                                                                                                      
-        ])->validate();                                                                                         
+            'start_date' => 'required'
+        ])->validate();
 
         EmploymentHistory::create([
             'title' => $request->title,
@@ -30,7 +30,7 @@ class EmploymentHistoryController extends Controller
     {
         Validator::make($request->all(), [
             'title' => 'required',
-            'start_date' => 'required'                                                                                                      
+            'start_date' => 'required'
         ])->validate();
 
         $employmentHistory->update([

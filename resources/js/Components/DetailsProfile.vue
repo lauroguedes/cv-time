@@ -8,20 +8,23 @@
     <ul class="list-none mb-2">
       <li>{{ user.profile.city_uf }}</li>
       <li>{{ user.profile.phone }}</li>
-      <li>{{ user.profile.email }}</li>
+      <li>{{ user.email }}</li>
     </ul>
     <div>
       <h3 class="text-gray-500">Date of Birth</h3>
-      <div>{{ user.profile.date_birth | moment('DD/MM/YYYY') }}</div>
+      <div>
+        <i class="fas fa-birthday-cake text-indigo-400"></i>
+        {{ user.profile.date_birth | moment("DD/MM/YYYY") }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      user: Object,
-      title: String
-    }
-  }
+export default {
+  props: {
+    user: Object,
+    title: String,
+  },
+};
 </script>

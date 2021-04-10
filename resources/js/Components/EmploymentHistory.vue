@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h2 id="employmentHistory" class="my-7 text-xl flex justify-between items-center">
+    <h2
+      id="employmentHistory"
+      class="my-7 text-xl flex justify-between items-center"
+    >
       <div>
         <i class="fas fa-hard-hat mr-3 text-orange-400"></i>
         <span class="uppercase text-orange-400">{{ title }}</span>
@@ -224,7 +227,7 @@ export default {
       this.modelToUpdate = id;
       this.update = true;
       this.showForm = true;
-      window.location.href = '#employmentHistory'
+      window.location.href = "#employmentHistory";
     },
     isEmpty(obj) {
       return _.isEmpty(obj);
@@ -232,10 +235,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.mx-datepicker {
-  width: 100%;
-  display: block;
-}
-</style>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmploymentHistoryController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/curriculum', function() {
         return inertia('Curriculum');
     })->name('curriculum');
+
+    Route::name('profile.')
+        ->group(function () {
+            Route::put('/{profile}', [ProfileController::class, 'update'])
+                ->name('update');
+        });
 
     Route::name('employment-history.')
         ->group(function () {

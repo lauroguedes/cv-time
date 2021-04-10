@@ -18,6 +18,10 @@ class Profile extends Model
         'theme'
     ];
 
+    protected $casts = [
+        'date_birth' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
