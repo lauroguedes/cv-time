@@ -36,8 +36,13 @@
         <jet-danger-button
           class="ml-2"
           @click.native="deleteItem"
-          :class="{ 'opacity-25': form.processing || (confirm != confirmWordCheck && confirmMode) }"
-          :disabled="form.processing || (confirm != confirmWordCheck && confirmMode)"
+          :class="{
+            'opacity-25':
+              form.processing || (confirm != confirmWordCheck && confirmMode),
+          }"
+          :disabled="
+            form.processing || (confirm != confirmWordCheck && confirmMode)
+          "
         >
           Delete
         </jet-danger-button>
@@ -55,23 +60,23 @@ import JetInput from "@/Jetstream/Input";
 export default {
   props: {
     title: {
-      type: String
+      type: String,
     },
     description: {
-      type: String
+      type: String,
     },
     action: {
       type: String,
-      required: true
+      required: true,
     },
     modelId: {
       type: Number,
-      required: true
+      required: true,
     },
     confirmMode: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   components: {
     JetDialogModal,
@@ -83,7 +88,7 @@ export default {
     return {
       confirmingModelDeletion: false,
       confirm: "",
-      confirmWordCheck: 'CONFIRM',
+      confirmWordCheck: "CONFIRM",
       form: this.$inertia.form(
         {
           _method: "DELETE",
@@ -97,7 +102,7 @@ export default {
   methods: {
     confirmModelDeletion() {
       this.confirm = "";
-                                                        
+
       this.confirmingModelDeletion = true;
 
       if (this.confirmMode) {
@@ -109,14 +114,9 @@ export default {
 
     deleteItem() {
       this.form
-        .delete(
-          route(this.action, {
-            employmentHistory: this.modelId,
-          }),
-          {
-            preserveScroll: true,
-          }
-        )
+        .delete(route(this.action, this.modelId), {
+          preserveScroll: true,
+        })
         .then((response) => {
           if (!this.form.hasErrors()) {
             this.confirmingModelDeletion = false;

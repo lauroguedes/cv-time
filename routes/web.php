@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmploymentHistoryController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,12 +26,25 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('curriculum');
 
     Route::name('profile.')
+        ->prefix('profile')
         ->group(function () {
             Route::put('/{profile}', [ProfileController::class, 'update'])
                 ->name('update');
         });
 
+    Route::name('link.')
+        ->prefix('link')
+        ->group(function () {
+            Route::post('/', [LinkController::class, 'store'])
+                ->name('store');
+            Route::put('/{link}', [LinkController::class, 'update'])
+                ->name('update');
+            Route::delete('/{link}', [LinkController::class, 'destroy'])
+                ->name('destroy');
+        });
+
     Route::name('employment-history.')
+        ->prefix('employment-history')
         ->group(function () {
             Route::post('/', [EmploymentHistoryController::class, 'store'])
                 ->name('store');

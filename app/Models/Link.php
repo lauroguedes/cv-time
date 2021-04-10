@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\InjectAuthUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Link extends Model
 {
-    use HasFactory;
+    use HasFactory, InjectAuthUser;
 
     protected $fillable = [
         'icon',

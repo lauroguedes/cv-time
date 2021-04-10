@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmploymentHistory extends Model
 {
-    use HasFactory;
-    use InjectAuthUser;
+    use HasFactory, InjectAuthUser;
 
     protected $fillable = [
         'title',
