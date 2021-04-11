@@ -16,6 +16,10 @@
               <links title="Links" :links="user.links"></links>
               <skills title="Skills" :skills="user.skills"></skills>
               <hobbies title="Hobbies" :user="user"></hobbies>
+              <languages
+                title="languages"
+                :languages="user.languages"
+              ></languages>
             </div>
             <!-- Conteúdo do Currículo -->
             <div class="col-span-9">
@@ -41,6 +45,7 @@ import EmploymentHistory from "@/Components/EmploymentHistory";
 import Links from "@/Components/Links";
 import Skills from "@/Components/Skills";
 import Hobbies from "@/Components/Hobbies";
+import Languages from "@/Components/Languages";
 
 export default {
   components: {
@@ -52,6 +57,7 @@ export default {
     Links,
     Skills,
     Hobbies,
+    Languages,
   },
   props: {
     user: Object,

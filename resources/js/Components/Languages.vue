@@ -7,34 +7,34 @@
     </h2>
     <ul class="list-none mb-2">
       <li
-        v-for="skill in skills"
+        v-for="language in languages"
         class="mb-3"
-        :key="skill.id"
-        :title="`${getPercentage(skill.level)}%`"
+        :key="language.id"
+        :title="`${getPercentage(language.level)}%`"
       >
         <div>
-          <span>{{ skill.name.toUpperCase() }}</span>
+          <span>{{ language.name.toUpperCase() }}</span>
           <a
             href="#"
-            @click.prevent="edit(skill)"
+            @click.prevent="edit(language)"
             class="ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400"
           >
             <i class="fas fa-pencil-alt"></i>
           </a>
           <destroy-action
-            title="Delete Skill"
-            :description="`Are you sure to delete '${skill.name.toUpperCase()}'? Confirm below.`"
-            action="skill.destroy"
-            :modelId="skill.id"
+            title="Delete Language"
+            :description="`Are you sure to delete '${language.name.toUpperCase()}'? Confirm below.`"
+            action="language.destroy"
+            :modelId="language.id"
           />
         </div>
         <div class="relative pt-1">
           <div
-            class="overflow-hidden h-1 mb-4 text-xs flex rounded bg-orange-100"
+            class="overflow-hidden h-1 mb-4 text-xs flex rounded bg-indigo-100"
           >
             <div
-              :style="`width: ${getPercentage(skill.level)}%`"
-              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-400"
+              :style="`width: ${getPercentage(language.level)}%`"
+              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-400"
             ></div>
           </div>
         </div>
@@ -52,10 +52,10 @@
       @close="showForm = false"
       @submitted="store"
     >
-      <template #title> Add Skill </template>
+      <template #title> Add Language </template>
       <template #form>
         <div class="col-span-6 md:col-span-3">
-          <jet-label for="name" value="Skill" />
+          <jet-label for="name" value="Language" />
           <jet-input
             id="name"
             type="text"
@@ -81,7 +81,7 @@
             <option value="7">7 (Advanced)</option>
             <option value="8">8 (Advanced)</option>
             <option value="9">9 (Advanced)</option>
-            <option value="10">10 (Specialist)</option>
+            <option value="10">10 (Fluent)</option>
           </select>
           <jet-input-error :message="form.error('level')" class="mt-2" />
         </div>
@@ -119,7 +119,7 @@ import DestroyAction from "./DestroyAction";
 
 export default {
   props: {
-    skills: Array,
+    languages: Array,
     title: String,
   },
   components: {
@@ -161,8 +161,8 @@ export default {
     store() {
       if (this.update) {
         this.form.put(
-          route("skill.update", {
-            skill: this.modelToUpdate,
+          route("language.update", {
+            language: this.modelToUpdate,
           }),
           {
             preserveScroll: true,
@@ -177,7 +177,7 @@ export default {
         );
         return;
       }
-      this.form.post(route("skill.store"), {
+      this.form.post(route("language.store"), {
         preserveScroll: true,
         onSuccess: (data) => {
           if (_.isEmpty(data.props.errors)) {
@@ -186,12 +186,12 @@ export default {
         },
       });
     },
-    edit(skill) {
+    edit(language) {
       this.update = true;
-      this.modelToUpdate = skill.id;
+      this.modelToUpdate = language.id;
       this.showForm = true;
-      this.form.name = skill.name;
-      this.form.level = skill.level;
+      this.form.name = language.name;
+      this.form.level = language.level;
     },
     waitLitle(time = 500) {
       return setTimeout(() => {

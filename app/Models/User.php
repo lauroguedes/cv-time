@@ -63,6 +63,7 @@ class User extends Authenticatable
         'profile',
         'links',
         'skills',
+        'languages',
         'employmentHistories',
     ];
 
@@ -70,22 +71,27 @@ class User extends Authenticatable
      * Relacionamentos
      */
      public function profile()
-     {  
+     {
         return $this->hasOne(Profile::class);
      }
 
      public function links()
-     {  
+     {
         return $this->hasMany(Link::class);
      }
 
      public function skills()
-     {  
+     {
         return $this->hasMany(Skill::class);
      }
 
+     public function languages()
+     {
+        return $this->hasMany(Language::class);
+     }
+
      public function employmentHistories()
-     {  
+     {
         return $this->hasMany(EmploymentHistory::class);
-     } 
+     }
 }

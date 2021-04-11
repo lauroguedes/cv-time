@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmploymentHistoryController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SkillController;
@@ -52,6 +53,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::put('/{skill}', [SkillController::class, 'update'])
                 ->name('update');
             Route::delete('/{skill}', [SkillController::class, 'destroy'])
+                ->name('destroy');
+        });
+
+    Route::name('language.')
+        ->prefix('language')
+        ->group(function () {
+            Route::post('/', [LanguageController::class, 'store'])
+                ->name('store');
+            Route::put('/{language}', [LanguageController::class, 'update'])
+                ->name('update');
+            Route::delete('/{language}', [LanguageController::class, 'destroy'])
                 ->name('destroy');
         });
 

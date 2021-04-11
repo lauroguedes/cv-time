@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ->hasProfile(1)
             ->hasLinks(5)
             ->hasSkills(10)
+            ->hasLanguages(2)
             ->hasEmploymentHistories(5)
             ->create([
                 'name' => 'Léo WG',
