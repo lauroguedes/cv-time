@@ -2133,25 +2133,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_DialogModalFormSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/DialogModalFormSection */ "./resources/js/Jetstream/DialogModalFormSection.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _DestroyAction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DestroyAction */ "./resources/js/Components/DestroyAction.vue");
-/* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
-/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _DestroyAction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DestroyAction */ "./resources/js/Components/DestroyAction.vue");
+/* harmony import */ var vue2_datepicker__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue2-datepicker */ "./node_modules/vue2-datepicker/index.esm.js");
+/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue2-datepicker/index.css */ "./node_modules/vue2-datepicker/index.css");
+/* harmony import */ var vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue2_datepicker_index_css__WEBPACK_IMPORTED_MODULE_9__);
 //
 //
 //
@@ -2276,12 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -2298,18 +2294,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__["default"],
-    DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_7__["default"],
-    DestroyAction: _DestroyAction__WEBPACK_IMPORTED_MODULE_6__["default"]
-  },
-  computed: {
-    formErrors: function formErrors() {
-      return this.form.__inertia.page.props.errors;
-    }
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetDialogModalFormSection: _Jetstream_DialogModalFormSection__WEBPACK_IMPORTED_MODULE_0__["default"],
+    DestroyAction: _DestroyAction__WEBPACK_IMPORTED_MODULE_7__["default"],
+    DatePicker: vue2_datepicker__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   data: function data() {
     return {
@@ -2329,6 +2321,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    showDialog: function showDialog() {
+      this.showForm = true;
+      this.form.reset();
+    },
     store: function store() {
       var _this = this;
 
@@ -2337,13 +2333,12 @@ __webpack_require__.r(__webpack_exports__);
           employmentHistory: this.modelToUpdate
         }), {
           preserveScroll: true,
-          onSuccess: function onSuccess() {
-            if (_.isEmpty(_this.formErrors)) {
+          onSuccess: function onSuccess(data) {
+            if (_.isEmpty(data.props.errors)) {
               _this.modelToUpdate = null;
               _this.update = false;
-              setTimeout(function () {
-                _this.showForm = false;
-              }, 1000);
+
+              _this.waitLitle();
             }
           }
         });
@@ -2352,27 +2347,29 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.post(route("employment-history.store"), {
         preserveScroll: true,
-        onSuccess: function onSuccess() {
-          if (_.isEmpty(_this.formErrors)) {
-            setTimeout(function () {
-              _this.showForm = false;
-            }, 1000);
+        onSuccess: function onSuccess(data) {
+          if (_.isEmpty(data.props.errors)) {
+            _this.waitLitle();
           }
         }
       });
-      return;
     },
-    edit: function edit(id) {
-      var employmentHistory = _.find(this.employmentHistories, ["id", id]);
-
+    edit: function edit(employmentHistory) {
+      this.update = true;
+      this.showForm = true;
+      this.modelToUpdate = employmentHistory.id;
       this.form.title = employmentHistory.title;
       this.form.start_date = this.$moment(employmentHistory.start_date).toDate();
       this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
       this.form.description = employmentHistory.description;
-      this.modelToUpdate = id;
-      this.update = true;
-      this.showForm = true;
-      window.location.href = "#employmentHistory";
+    },
+    waitLitle: function waitLitle() {
+      var _this2 = this;
+
+      var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+      return setTimeout(function () {
+        _this2.showForm = false;
+      }, time);
     },
     isEmpty: function isEmpty(obj) {
       return _.isEmpty(obj);
@@ -5406,7 +5403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_HeaderProfile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/HeaderProfile */ "./resources/js/Components/HeaderProfile.vue");
 /* harmony import */ var _Components_AboutProfile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/AboutProfile */ "./resources/js/Components/AboutProfile.vue");
 /* harmony import */ var _Components_DetailsProfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/DetailsProfile */ "./resources/js/Components/DetailsProfile.vue");
-/* harmony import */ var _Components_EmploymentHistory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/EmploymentHistory */ "./resources/js/Components/EmploymentHistory.vue");
+/* harmony import */ var _Components_EmploymentHistories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/EmploymentHistories */ "./resources/js/Components/EmploymentHistories.vue");
 /* harmony import */ var _Components_Links__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Links */ "./resources/js/Components/Links.vue");
 /* harmony import */ var _Components_Skills__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Skills */ "./resources/js/Components/Skills.vue");
 /* harmony import */ var _Components_Hobbies__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Hobbies */ "./resources/js/Components/Hobbies.vue");
@@ -5464,7 +5461,7 @@ __webpack_require__.r(__webpack_exports__);
     HeaderProfile: _Components_HeaderProfile__WEBPACK_IMPORTED_MODULE_1__["default"],
     AboutProfile: _Components_AboutProfile__WEBPACK_IMPORTED_MODULE_2__["default"],
     DetailsProfile: _Components_DetailsProfile__WEBPACK_IMPORTED_MODULE_3__["default"],
-    EmploymentHistory: _Components_EmploymentHistory__WEBPACK_IMPORTED_MODULE_4__["default"],
+    EmploymentHistories: _Components_EmploymentHistories__WEBPACK_IMPORTED_MODULE_4__["default"],
     Links: _Components_Links__WEBPACK_IMPORTED_MODULE_5__["default"],
     Skills: _Components_Skills__WEBPACK_IMPORTED_MODULE_6__["default"],
     Hobbies: _Components_Hobbies__WEBPACK_IMPORTED_MODULE_7__["default"],
@@ -48420,10 +48417,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -48458,241 +48455,16 @@ var render = function() {
             {
               staticClass:
                 "transition duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white py-1 px-3 rounded text-sm",
-              class: { "opacity-50 cursor-not-allowed": _vm.showForm },
-              attrs: { type: "button", disabled: _vm.showForm },
+              attrs: { type: "button" },
               on: {
                 click: function($event) {
-                  _vm.showForm = true
+                  return _vm.showDialog()
                 }
               }
             },
             [_c("i", { staticClass: "fas fa-plus" })]
           )
         ]
-      ),
-      _vm._v(" "),
-      _c(
-        "transition",
-        {
-          attrs: {
-            "leave-active-class": "transition ease-out duration-200",
-            "leave-class": "opacity-100",
-            "leave-to-class": "opacity-0"
-          }
-        },
-        [
-          _vm.showForm
-            ? _c("jet-form-section", {
-                on: { submitted: _vm.store },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "form",
-                      fn: function() {
-                        return [
-                          _c(
-                            "div",
-                            { staticClass: "col-span-6" },
-                            [
-                              _c("jet-label", {
-                                attrs: { for: "title", value: "Title" }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input", {
-                                staticClass: "mt-1 w-full",
-                                attrs: {
-                                  id: "title",
-                                  type: "text",
-                                  autocomplete: "title"
-                                },
-                                model: {
-                                  value: _vm.form.title,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "title", $$v)
-                                  },
-                                  expression: "form.title"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input-error", {
-                                staticClass: "mt-2",
-                                attrs: { message: _vm.formErrors.title }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-span-3" },
-                            [
-                              _c("jet-label", {
-                                attrs: {
-                                  for: "start_date",
-                                  value: "Start Date"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("date-picker", {
-                                attrs: {
-                                  format: "DD/MM/YYYY",
-                                  "input-class":
-                                    "form-input rounded-md shadow-sm mt-1 w-full"
-                                },
-                                model: {
-                                  value: _vm.form.start_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "start_date", $$v)
-                                  },
-                                  expression: "form.start_date"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input-error", {
-                                staticClass: "mt-2",
-                                attrs: { message: _vm.formErrors.start_date }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-span-3" },
-                            [
-                              _c("jet-label", {
-                                attrs: { for: "end_date", value: "End Date" }
-                              }),
-                              _vm._v(" "),
-                              _c("date-picker", {
-                                attrs: {
-                                  format: "DD/MM/YYYY",
-                                  "input-class":
-                                    "form-input rounded-md shadow-sm mt-1 w-full"
-                                },
-                                model: {
-                                  value: _vm.form.end_date,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "end_date", $$v)
-                                  },
-                                  expression: "form.end_date"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input-error", {
-                                staticClass: "mt-2",
-                                attrs: { message: _vm.formErrors.end_date }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-span-6" },
-                            [
-                              _c("jet-label", {
-                                attrs: {
-                                  for: "description",
-                                  value: "Description"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("textarea", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.description,
-                                    expression: "form.description"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-input rounded-md shadow-sm mt-1 w-full",
-                                attrs: { rows: "5" },
-                                domProps: { value: _vm.form.description },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.form,
-                                      "description",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input-error", {
-                                staticClass: "mt-2",
-                                attrs: { message: _vm.formErrors.description }
-                              })
-                            ],
-                            1
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "actions",
-                      fn: function() {
-                        return [
-                          _c(
-                            "jet-action-message",
-                            {
-                              staticClass: "mr-3",
-                              attrs: { on: _vm.form.recentlySuccessful }
-                            },
-                            [
-                              _vm.isEmpty(_vm.formErrors)
-                                ? _c(
-                                    "span",
-                                    { staticClass: "text-green-400" },
-                                    [_vm._v("Saved!")]
-                                  )
-                                : _vm._e()
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "transition duration-100 ease-in-out bg-transparent uppercase text-gray-600 hover:text-red-400 py-1 px-3 mr-3 text-sm",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.showForm = false
-                                }
-                              }
-                            },
-                            [_vm._v("\n          Cancel\n        ")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "jet-button",
-                            {
-                              class: { "opacity-25": _vm.form.processing },
-                              attrs: { disabled: _vm.form.processing }
-                            },
-                            [_vm._v("\n          Save\n        ")]
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  2137637085
-                )
-              })
-            : _vm._e()
-        ],
-        1
       ),
       _vm._v(" "),
       _c(
@@ -48721,7 +48493,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            return _vm.edit(employmentHistory.id)
+                            return _vm.edit(employmentHistory)
                           }
                         }
                       },
@@ -48787,7 +48559,203 @@ var render = function() {
           ])
         }),
         0
-      )
+      ),
+      _vm._v(" "),
+      _c("jet-dialog-modal-form-section", {
+        attrs: { show: _vm.showForm },
+        on: {
+          close: function($event) {
+            _vm.showForm = false
+          },
+          submitted: _vm.store
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v(" Add Employment History ")]
+            },
+            proxy: true
+          },
+          {
+            key: "form",
+            fn: function() {
+              return [
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-6" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "title", value: "Title" }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      staticClass: "mt-1 w-full",
+                      attrs: {
+                        id: "title",
+                        type: "text",
+                        autocomplete: "title"
+                      },
+                      model: {
+                        value: _vm.form.title,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "title", $$v)
+                        },
+                        expression: "form.title"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("title") }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-3" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "start_date", value: "Start Date" }
+                    }),
+                    _vm._v(" "),
+                    _c("date-picker", {
+                      attrs: {
+                        format: "DD/MM/YYYY",
+                        "input-class":
+                          "form-input rounded-md shadow-sm mt-1 w-full"
+                      },
+                      model: {
+                        value: _vm.form.start_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "start_date", $$v)
+                        },
+                        expression: "form.start_date"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("start_date") }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-3" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "end_date", value: "End Date" }
+                    }),
+                    _vm._v(" "),
+                    _c("date-picker", {
+                      attrs: {
+                        format: "DD/MM/YYYY",
+                        "input-class":
+                          "form-input rounded-md shadow-sm mt-1 w-full"
+                      },
+                      model: {
+                        value: _vm.form.end_date,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "end_date", $$v)
+                        },
+                        expression: "form.end_date"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("end_date") }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-6" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "description", value: "Description" }
+                    }),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.description,
+                          expression: "form.description"
+                        }
+                      ],
+                      staticClass:
+                        "form-input rounded-md shadow-sm mt-1 w-full",
+                      attrs: { rows: "5" },
+                      domProps: { value: _vm.form.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "description", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("description") }
+                    })
+                  ],
+                  1
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "actions",
+            fn: function() {
+              return [
+                _c(
+                  "jet-action-message",
+                  {
+                    staticClass: "mr-3",
+                    attrs: { on: _vm.form.recentlySuccessful }
+                  },
+                  [_vm._v("\n        Saved.\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-secondary-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        _vm.showForm = false
+                      }
+                    }
+                  },
+                  [_vm._v("\n        Cancel\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-button",
+                  {
+                    class: { "opacity-25": _vm.form.processing },
+                    attrs: { disabled: _vm.form.processing }
+                  },
+                  [_vm._v("\n        Save\n      ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
     ],
     1
   )
@@ -54167,7 +54135,7 @@ var render = function() {
                     attrs: { title: "About me", user: _vm.user }
                   }),
                   _vm._v(" "),
-                  _c("employment-history", {
+                  _c("employment-histories", {
                     attrs: {
                       title: "Employment History",
                       employmentHistories: _vm.user.employment_histories
@@ -76780,17 +76748,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Components/EmploymentHistory.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/Components/EmploymentHistory.vue ***!
-  \*******************************************************/
+/***/ "./resources/js/Components/EmploymentHistories.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/Components/EmploymentHistories.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmploymentHistory.vue?vue&type=template&id=74ea3766& */ "./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766&");
-/* harmony import */ var _EmploymentHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmploymentHistory.vue?vue&type=script&lang=js& */ "./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmploymentHistories.vue?vue&type=template&id=c4e0c6aa& */ "./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa&");
+/* harmony import */ var _EmploymentHistories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmploymentHistories.vue?vue&type=script&lang=js& */ "./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -76800,9 +76768,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _EmploymentHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _EmploymentHistories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -76812,38 +76780,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Components/EmploymentHistory.vue"
+component.options.__file = "resources/js/Components/EmploymentHistories.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
+/***/ "./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EmploymentHistory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistory.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EmploymentHistories.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistories.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EmploymentHistory.vue?vue&type=template&id=74ea3766& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistory.vue?vue&type=template&id=74ea3766&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EmploymentHistories.vue?vue&type=template&id=c4e0c6aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Components/EmploymentHistories.vue?vue&type=template&id=c4e0c6aa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistory_vue_vue_type_template_id_74ea3766___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EmploymentHistories_vue_vue_type_template_id_c4e0c6aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

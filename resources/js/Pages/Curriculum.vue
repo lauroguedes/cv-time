@@ -24,10 +24,10 @@
             <!-- Conteúdo do Currículo -->
             <div class="col-span-9">
               <about-profile title="About me" :user="user"></about-profile>
-              <employment-history
+              <employment-histories
                 title="Employment History"
                 :employmentHistories="user.employment_histories"
-              ></employment-history>
+              ></employment-histories>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@ import AppLayout from "@/Layouts/AppLayout";
 import HeaderProfile from "@/Components/HeaderProfile";
 import AboutProfile from "@/Components/AboutProfile";
 import DetailsProfile from "@/Components/DetailsProfile";
-import EmploymentHistory from "@/Components/EmploymentHistory";
+import EmploymentHistories from "@/Components/EmploymentHistories";
 import Links from "@/Components/Links";
 import Skills from "@/Components/Skills";
 import Hobbies from "@/Components/Hobbies";
@@ -53,7 +53,7 @@ export default {
     HeaderProfile,
     AboutProfile,
     DetailsProfile,
-    EmploymentHistory,
+    EmploymentHistories,
     Links,
     Skills,
     Hobbies,

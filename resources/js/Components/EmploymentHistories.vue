@@ -10,82 +10,12 @@
       </div>
       <button
         type="button"
-        @click="showForm = true"
-        :disabled="showForm"
-        :class="{ 'opacity-50 cursor-not-allowed': showForm }"
+        @click="showDialog()"
         class="transition duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white py-1 px-3 rounded text-sm"
       >
         <i class="fas fa-plus"></i>
       </button>
     </h2>
-    <transition
-      leave-active-class="transition ease-out duration-200"
-      leave-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <jet-form-section @submitted="store" v-if="showForm">
-        <template #form>
-          <div class="col-span-6">
-            <jet-label for="title" value="Title" />
-            <jet-input
-              id="title"
-              type="text"
-              class="mt-1 w-full"
-              v-model="form.title"
-              autocomplete="title"
-            />
-            <jet-input-error :message="formErrors.title" class="mt-2" />
-          </div>
-          <div class="col-span-3">
-            <jet-label for="start_date" value="Start Date" />
-            <date-picker
-              v-model="form.start_date"
-              format="DD/MM/YYYY"
-              input-class="form-input rounded-md shadow-sm mt-1 w-full"
-            ></date-picker>
-            <jet-input-error :message="formErrors.start_date" class="mt-2" />
-          </div>
-          <div class="col-span-3">
-            <jet-label for="end_date" value="End Date" />
-            <date-picker
-              v-model="form.end_date"
-              format="DD/MM/YYYY"
-              input-class="form-input rounded-md shadow-sm mt-1 w-full"
-            ></date-picker>
-            <jet-input-error :message="formErrors.end_date" class="mt-2" />
-          </div>
-          <div class="col-span-6">
-            <jet-label for="description" value="Description" />
-            <textarea
-              v-model="form.description"
-              rows="5"
-              class="form-input rounded-md shadow-sm mt-1 w-full"
-            ></textarea>
-            <jet-input-error :message="formErrors.description" class="mt-2" />
-          </div>
-        </template>
-        <template #actions>
-          <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-            <span class="text-green-400" v-if="isEmpty(formErrors)"
-              >Saved!</span
-            >
-          </jet-action-message>
-          <button
-            type="button"
-            @click="showForm = false"
-            class="transition duration-100 ease-in-out bg-transparent uppercase text-gray-600 hover:text-red-400 py-1 px-3 mr-3 text-sm"
-          >
-            Cancel
-          </button>
-          <jet-button
-            :class="{ 'opacity-25': form.processing }"
-            :disabled="form.processing"
-          >
-            Save
-          </jet-button>
-        </template>
-      </jet-form-section>
-    </transition>
     <ul class="list-none">
       <li
         v-for="employmentHistory in employmentHistories"
@@ -97,7 +27,7 @@
             <span>{{ employmentHistory.title }}</span>
             <a
               href="#"
-              @click.prevent="edit(employmentHistory.id)"
+              @click.prevent="edit(employmentHistory)"
               class="ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400"
             >
               <i class="fas fa-pencil-alt"></i>
@@ -125,16 +55,81 @@
         </div>
       </li>
     </ul>
+    <jet-dialog-modal-form-section
+      :show="showForm"
+      @close="showForm = false"
+      @submitted="store"
+    >
+      <template #title> Add Employment History </template>
+      <template #form>
+        <div class="col-span-6 md:col-span-6">
+          <jet-label for="title" value="Title" />
+          <jet-input
+            id="title"
+            type="text"
+            class="mt-1 w-full"
+            v-model="form.title"
+            autocomplete="title"
+          />
+          <jet-input-error :message="form.error('title')" class="mt-2" />
+        </div>
+        <div class="col-span-6 md:col-span-3">
+          <jet-label for="start_date" value="Start Date" />
+          <date-picker
+            v-model="form.start_date"
+            format="DD/MM/YYYY"
+            input-class="form-input rounded-md shadow-sm mt-1 w-full"
+          ></date-picker>
+          <jet-input-error :message="form.error('start_date')" class="mt-2" />
+        </div>
+        <div class="col-span-6 md:col-span-3">
+          <jet-label for="end_date" value="End Date" />
+          <date-picker
+            v-model="form.end_date"
+            format="DD/MM/YYYY"
+            input-class="form-input rounded-md shadow-sm mt-1 w-full"
+          ></date-picker>
+          <jet-input-error :message="form.error('end_date')" class="mt-2" />
+        </div>
+        <div class="col-span-6 md:col-span-6">
+          <jet-label for="description" value="Description" />
+          <textarea
+            v-model="form.description"
+            rows="5"
+            class="form-input rounded-md shadow-sm mt-1 w-full"
+          ></textarea>
+          <jet-input-error :message="form.error('description')" class="mt-2" />
+        </div>
+      </template>
+
+      <template #actions>
+        <jet-action-message :on="form.recentlySuccessful" class="mr-3">
+          Saved.
+        </jet-action-message>
+
+        <jet-secondary-button @click.native="showForm = false">
+          Cancel
+        </jet-secondary-button>
+
+        <jet-button
+          :class="{ 'opacity-25': form.processing }"
+          :disabled="form.processing"
+        >
+          Save
+        </jet-button>
+      </template>
+    </jet-dialog-modal-form-section>
   </div>
 </template>
 
 <script>
+import JetDialogModalFormSection from "@/Jetstream/DialogModalFormSection";
 import JetButton from "@/Jetstream/Button";
-import JetFormSection from "@/Jetstream/FormSection";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import DestroyAction from "./DestroyAction";
 
 import DatePicker from "vue2-datepicker";
@@ -148,17 +143,13 @@ export default {
   components: {
     JetActionMessage,
     JetButton,
-    JetFormSection,
     JetInput,
     JetInputError,
     JetLabel,
-    DatePicker,
+    JetSecondaryButton,
+    JetDialogModalFormSection,
     DestroyAction,
-  },
-  computed: {
-    formErrors() {
-      return this.form.__inertia.page.props.errors;
-    },
+    DatePicker,
   },
   data() {
     return {
@@ -180,7 +171,12 @@ export default {
       ),
     };
   },
+
   methods: {
+    showDialog() {
+      this.showForm = true;
+      this.form.reset();
+    },
     store() {
       if (this.update) {
         this.form.put(
@@ -189,13 +185,11 @@ export default {
           }),
           {
             preserveScroll: true,
-            onSuccess: () => {
-              if (_.isEmpty(this.formErrors)) {
+            onSuccess: (data) => {
+              if (_.isEmpty(data.props.errors)) {
                 this.modelToUpdate = null;
                 this.update = false;
-                setTimeout(() => {
-                  this.showForm = false;
-                }, 1000);
+                this.waitLitle();
               }
             },
           }
@@ -204,30 +198,28 @@ export default {
       }
       this.form.post(route("employment-history.store"), {
         preserveScroll: true,
-        onSuccess: () => {
-          if (_.isEmpty(this.formErrors)) {
-            setTimeout(() => {
-              this.showForm = false;
-            }, 1000);
+        onSuccess: (data) => {
+          if (_.isEmpty(data.props.errors)) {
+            this.waitLitle();
           }
         },
       });
-      return;
     },
-    edit(id) {
-      let employmentHistory = _.find(this.employmentHistories, ["id", id]);
-
+    edit(employmentHistory) {
+      this.update = true;
+      this.showForm = true;
+      this.modelToUpdate = employmentHistory.id;
       this.form.title = employmentHistory.title;
       this.form.start_date = this.$moment(
         employmentHistory.start_date
       ).toDate();
       this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
       this.form.description = employmentHistory.description;
-
-      this.modelToUpdate = id;
-      this.update = true;
-      this.showForm = true;
-      window.location.href = "#employmentHistory";
+    },
+    waitLitle(time = 500) {
+      return setTimeout(() => {
+        this.showForm = false;
+      }, time);
     },
     isEmpty(obj) {
       return _.isEmpty(obj);
