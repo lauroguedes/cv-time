@@ -14,6 +14,8 @@
             <div class="col-span-3">
               <details-profile title="Details" :user="user"></details-profile>
               <links title="Links" :links="user.links"></links>
+              <skills title="Skills" :skills="user.skills"></skills>
+              <hobbies title="Hobbies" :user="user"></hobbies>
             </div>
             <!-- Conteúdo do Currículo -->
             <div class="col-span-9">
@@ -37,6 +39,8 @@ import AboutProfile from "@/Components/AboutProfile";
 import DetailsProfile from "@/Components/DetailsProfile";
 import EmploymentHistory from "@/Components/EmploymentHistory";
 import Links from "@/Components/Links";
+import Skills from "@/Components/Skills";
+import Hobbies from "@/Components/Hobbies";
 
 export default {
   components: {
@@ -46,6 +50,8 @@ export default {
     DetailsProfile,
     EmploymentHistory,
     Links,
+    Skills,
+    Hobbies,
   },
   props: {
     user: Object,
