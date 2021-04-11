@@ -40,6 +40,7 @@
         </div>
       </li>
     </ul>
+    <no-result :obj="skills" />
     <button
       type="button"
       @click="showDialog()"
@@ -116,6 +117,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import DestroyAction from "./DestroyAction";
+import NoResult from "./NoResult";
 
 export default {
   props: {
@@ -131,6 +133,7 @@ export default {
     JetSecondaryButton,
     JetDialogModalFormSection,
     DestroyAction,
+    NoResult,
   },
   data() {
     return {

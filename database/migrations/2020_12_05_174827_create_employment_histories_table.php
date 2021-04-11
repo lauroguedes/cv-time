@@ -22,6 +22,7 @@ class CreateEmploymentHistoriesTable extends Migration
             $table->string('title');
             $table->date('start_date');
             $table->date('end_date')->nullable();
+            $table->string('company');
             $table->text('description')->nullable();
 
             $table->timestamps();

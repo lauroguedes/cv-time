@@ -15,6 +15,7 @@ class EmploymentHistory extends Model
         'start_date',
         'end_date',
         'description',
+        'company',
     ];
 
     protected $casts = [

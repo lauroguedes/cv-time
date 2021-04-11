@@ -11,7 +11,8 @@ class EmploymentHistoryController extends Controller
     {
         \Validator::make($request->all(), [
             'title' => 'required',
-            'start_date' => 'required'
+            'start_date' => 'required',
+            'company' => 'required',
         ])->validateWithBag('store');
 
         EmploymentHistory::create($request->all());
@@ -23,7 +24,8 @@ class EmploymentHistoryController extends Controller
     {
         \Validator::make($request->all(), [
             'title' => 'required',
-            'start_date' => 'required'
+            'start_date' => 'required',
+            'company' => 'required',
         ])->validateWithBag('store');
 
         $employmentHistory->update($request->all());

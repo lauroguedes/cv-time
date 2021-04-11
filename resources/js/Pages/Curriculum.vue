@@ -15,7 +15,11 @@
               <details-profile title="Details" :user="user"></details-profile>
               <links title="Links" :links="user.links"></links>
               <skills title="Skills" :skills="user.skills"></skills>
-              <hobbies title="Hobbies" :user="user"></hobbies>
+              <hobbies
+                v-if="user.profile.hobbies"
+                title="Hobbies"
+                :user="user"
+              ></hobbies>
               <languages
                 title="languages"
                 :languages="user.languages"

@@ -26,7 +26,8 @@ class EmploymentHistoryFactory extends Factory
             'title' => $this->faker->sentence(3),
             'start_date' => $date,
             'end_date' => $date->addYears(2),
-            'description' => $this->faker->paragraph()
+            'description' => $this->faker->paragraph(),
+            'company' => $this->faker->company,
         ];
     }
 }

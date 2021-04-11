@@ -17,14 +17,16 @@
       </button>
     </h2>
     <ul class="list-none">
-      <li
-        v-for="employmentHistory in employmentHistories"
-        :key="employmentHistory.id"
-      >
+      <li v-for="employmentHistory in orderList" :key="employmentHistory.id">
         <div class="ml-2 pb-5 pl-6 border-l-4 border-indigo-400">
           <h3 class="text-lg text-gray-600 mb-1 font-bold relative">
             <!-- <i class="far fa-circle text-gray-400 text-lg mr-1 absolute -left-5"></i> -->
-            <span>{{ employmentHistory.title }}</span>
+            <span
+              >{{ employmentHistory.title }} <span>at</span>
+              <span class="text-gray-400">{{
+                employmentHistory.company
+              }}</span></span
+            >
             <a
               href="#"
               @click.prevent="edit(employmentHistory)"
@@ -41,13 +43,18 @@
           </h3>
           <div class="mb-2 text-gray-600">
             <span>{{
-              employmentHistory.start_date | moment("DD/MM/YYYY")
+              employmentHistory.start_date | moment("MMM [at] YYYY")
             }}</span>
             <span class="text-indigo-400 font-bold"> to </span>
             <span v-if="employmentHistory.end_date">{{
-              employmentHistory.end_date | moment("DD/MM/YYYY")
+              employmentHistory.end_date | moment("MMM [at] YYYY")
             }}</span>
             <span v-else>Present</span>
+            <span
+              v-if="employmentHistory.end_date"
+              class="text-indigo-400 font-bold"
+              >({{ getTimeHistory(employmentHistory) }})</span
+            >
           </div>
           <div v-if="employmentHistory.description" class="text-gray-400">
             {{ employmentHistory.description }}
@@ -55,6 +62,7 @@
         </div>
       </li>
     </ul>
+    <no-result :obj="employmentHistories" />
     <jet-dialog-modal-form-section
       :show="showForm"
       @close="showForm = false"
@@ -62,7 +70,7 @@
     >
       <template #title> Add Employment History </template>
       <template #form>
-        <div class="col-span-6 md:col-span-6">
+        <div class="col-span-6 md:col-span-3">
           <jet-label for="title" value="Title" />
           <jet-input
             id="title"
@@ -74,10 +82,22 @@
           <jet-input-error :message="form.error('title')" class="mt-2" />
         </div>
         <div class="col-span-6 md:col-span-3">
+          <jet-label for="company" value="Company" />
+          <jet-input
+            id="company"
+            type="text"
+            class="mt-1 w-full"
+            v-model="form.company"
+            autocomplete="company"
+          />
+          <jet-input-error :message="form.error('company')" class="mt-2" />
+        </div>
+        <div class="col-span-6 md:col-span-3">
           <jet-label for="start_date" value="Start Date" />
           <date-picker
             v-model="form.start_date"
-            format="DD/MM/YYYY"
+            type="month"
+            format="MM/YYYY"
             input-class="form-input rounded-md shadow-sm mt-1 w-full"
           ></date-picker>
           <jet-input-error :message="form.error('start_date')" class="mt-2" />
@@ -86,7 +106,8 @@
           <jet-label for="end_date" value="End Date" />
           <date-picker
             v-model="form.end_date"
-            format="DD/MM/YYYY"
+            type="month"
+            format="MM/YYYY"
             input-class="form-input rounded-md shadow-sm mt-1 w-full"
           ></date-picker>
           <jet-input-error :message="form.error('end_date')" class="mt-2" />
@@ -131,6 +152,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import DestroyAction from "./DestroyAction";
+import NoResult from "./NoResult";
 
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
@@ -150,6 +172,12 @@ export default {
     JetDialogModalFormSection,
     DestroyAction,
     DatePicker,
+    NoResult,
+  },
+  computed: {
+    orderList() {
+      return _.orderBy(this.employmentHistories, ["end_date"], ["desc"]);
+    },
   },
   data() {
     return {
@@ -163,6 +191,7 @@ export default {
           start_date: null,
           end_date: null,
           description: null,
+          company: null,
         },
         {
           bag: "store",
@@ -171,11 +200,21 @@ export default {
       ),
     };
   },
-
   methods: {
     showDialog() {
       this.showForm = true;
       this.form.reset();
+    },
+    getTimeHistory(obj) {
+      if (obj.start_date && obj.end_date) {
+        let start = this.$moment(obj.start_date);
+        let end = this.$moment(obj.end_date);
+        let result = end.diff(start, "years");
+        if (!result) {
+          return "less than 1 year";
+        }
+        return result + " year" + (result > 1 ? "s" : "");
+      }
     },
     store() {
       if (this.update) {
@@ -215,6 +254,7 @@ export default {
       ).toDate();
       this.form.end_date = this.$moment(employmentHistory.end_date).toDate();
       this.form.description = employmentHistory.description;
+      this.form.company = employmentHistory.company;
     },
     waitLitle(time = 500) {
       return setTimeout(() => {
