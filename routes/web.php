@@ -3,6 +3,7 @@
 use App\Http\Controllers\EmploymentHistoryController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::put('/{link}', [LinkController::class, 'update'])
                 ->name('update');
             Route::delete('/{link}', [LinkController::class, 'destroy'])
+                ->name('destroy');
+        });
+
+    Route::name('skill.')
+        ->prefix('skill')
+        ->group(function () {
+            Route::post('/', [SkillController::class, 'store'])
+                ->name('store');
+            Route::put('/{skill}', [SkillController::class, 'update'])
+                ->name('update');
+            Route::delete('/{skill}', [SkillController::class, 'destroy'])
                 ->name('destroy');
         });
 

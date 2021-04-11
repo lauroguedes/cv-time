@@ -2676,6 +2676,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_DialogModalFormSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Jetstream/DialogModalFormSection */ "./resources/js/Jetstream/DialogModalFormSection.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _DestroyAction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DestroyAction */ "./resources/js/Components/DestroyAction.vue");
 //
 //
 //
@@ -2706,14 +2714,174 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     skills: Array,
     title: String
   },
+  components: {
+    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetDialogModalFormSection: _Jetstream_DialogModalFormSection__WEBPACK_IMPORTED_MODULE_0__["default"],
+    DestroyAction: _DestroyAction__WEBPACK_IMPORTED_MODULE_7__["default"]
+  },
+  data: function data() {
+    return {
+      showForm: false,
+      update: false,
+      modelToUpdate: null,
+      form: this.$inertia.form({
+        _method: "POST",
+        name: null,
+        level: null
+      }, {
+        bag: "store",
+        resetOnSuccess: true
+      })
+    };
+  },
   methods: {
     getPercentage: function getPercentage(value) {
       return 100 * value / 10;
+    },
+    showDialog: function showDialog() {
+      this.showForm = true;
+      this.form.reset();
+    },
+    store: function store() {
+      var _this = this;
+
+      if (this.update) {
+        this.form.put(route("skill.update", {
+          skill: this.modelToUpdate
+        }), {
+          preserveScroll: true,
+          onSuccess: function onSuccess(data) {
+            if (_.isEmpty(data.props.errors)) {
+              _this.modelToUpdate = null;
+              _this.update = false;
+
+              _this.waitLitle();
+            }
+          }
+        });
+        return;
+      }
+
+      this.form.post(route("skill.store"), {
+        preserveScroll: true,
+        onSuccess: function onSuccess(data) {
+          if (_.isEmpty(data.props.errors)) {
+            _this.waitLitle();
+          }
+        }
+      });
+    },
+    edit: function edit(skill) {
+      this.update = true;
+      this.modelToUpdate = skill.id;
+      this.showForm = true;
+      this.form.name = skill.name;
+      this.form.level = skill.level;
+    },
+    waitLitle: function waitLitle() {
+      var _this2 = this;
+
+      var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+      return setTimeout(function () {
+        _this2.showForm = false;
+      }, time);
     }
   }
 });
@@ -48805,57 +48973,293 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-center" }, [
-    _c(
-      "h2",
-      { staticClass: "uppercase mb-5 mt-8 flex items-center justify-center" },
-      [
-        _c("i", { staticClass: "far fa-circle text-gray-400 text-xs mr-2" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-gray-800 text-xl" }, [
-          _vm._v(_vm._s(_vm.title))
-        ]),
-        _vm._v(" "),
-        _c("i", { staticClass: "far fa-circle text-gray-400 text-xs ml-2" })
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "list-none mb-2" },
-      _vm._l(_vm.skills, function(skill) {
-        return _c(
-          "li",
-          {
-            key: skill.id,
-            staticClass: "mb-3",
-            attrs: { title: _vm.getPercentage(skill.level) + "%" }
-          },
-          [
-            _c("div", [_vm._v(_vm._s(skill.name.toUpperCase()))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "relative pt-1" }, [
+  return _c(
+    "div",
+    { staticClass: "text-center" },
+    [
+      _c(
+        "h2",
+        { staticClass: "uppercase mb-5 mt-8 flex items-center justify-center" },
+        [
+          _c("i", { staticClass: "far fa-circle text-gray-400 text-xs mr-2" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-gray-800 text-xl" }, [
+            _vm._v(_vm._s(_vm.title))
+          ]),
+          _vm._v(" "),
+          _c("i", { staticClass: "far fa-circle text-gray-400 text-xs ml-2" })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "list-none mb-2" },
+        _vm._l(_vm.skills, function(skill) {
+          return _c(
+            "li",
+            {
+              key: skill.id,
+              staticClass: "mb-3",
+              attrs: { title: _vm.getPercentage(skill.level) + "%" }
+            },
+            [
               _c(
                 "div",
-                {
-                  staticClass:
-                    "overflow-hidden h-1 mb-4 text-xs flex rounded bg-orange-100"
-                },
                 [
-                  _c("div", {
-                    staticClass:
-                      "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-400",
-                    style: "width: " + _vm.getPercentage(skill.level) + "%"
+                  _c("span", [_vm._v(_vm._s(skill.name.toUpperCase()))]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "ml-3 transition duration-100 ease-in-out text-indigo-200 hover:text-indigo-400",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.edit(skill)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                  ),
+                  _vm._v(" "),
+                  _c("destroy-action", {
+                    attrs: {
+                      title: "Delete Link",
+                      description:
+                        "Are you sure to delete '" +
+                        skill.name.toUpperCase() +
+                        "'? Confirm below.",
+                      action: "skill.destroy",
+                      modelId: skill.id
+                    }
                   })
-                ]
-              )
-            ])
-          ]
-        )
-      }),
-      0
-    )
-  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "relative pt-1" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "overflow-hidden h-1 mb-4 text-xs flex rounded bg-orange-100"
+                  },
+                  [
+                    _c("div", {
+                      staticClass:
+                        "shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-400",
+                      style: "width: " + _vm.getPercentage(skill.level) + "%"
+                    })
+                  ]
+                )
+              ])
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "transition duration-100 ease-in-out bg-green-400 hover:bg-green-500 text-white py-1 px-3 rounded text-sm",
+          attrs: { type: "button" },
+          on: {
+            click: function($event) {
+              return _vm.showDialog()
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-plus" })]
+      ),
+      _vm._v(" "),
+      _c("jet-dialog-modal-form-section", {
+        attrs: { show: _vm.showForm },
+        on: {
+          close: function($event) {
+            _vm.showForm = false
+          },
+          submitted: _vm.store
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v(" Add Skill ")]
+            },
+            proxy: true
+          },
+          {
+            key: "form",
+            fn: function() {
+              return [
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-3" },
+                  [
+                    _c("jet-label", { attrs: { for: "name", value: "Skill" } }),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      staticClass: "mt-1 block w-full",
+                      attrs: { id: "name", type: "text", autocomplete: "name" },
+                      model: {
+                        value: _vm.form.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "name", $$v)
+                        },
+                        expression: "form.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("name") }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 md:col-span-3" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "level", value: "Level" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.level,
+                            expression: "form.level"
+                          }
+                        ],
+                        staticClass:
+                          "form-input rounded-md shadow-sm mt-1 w-full",
+                        attrs: { id: "level" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.form,
+                              "level",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "1" } }, [
+                          _vm._v("1 (Básico)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2" } }, [
+                          _vm._v("2 (Básico)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "3" } }, [
+                          _vm._v("3 (Básico)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "4" } }, [
+                          _vm._v("4 (Intermediário)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "5" } }, [
+                          _vm._v("5 (Intermediário)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "6" } }, [
+                          _vm._v("6 (Intermediário)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "7" } }, [
+                          _vm._v("7 (Avançado)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "8" } }, [
+                          _vm._v("8 (Avançado)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "9" } }, [
+                          _vm._v("9 (Avançado)")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "10" } }, [
+                          _vm._v("10 (Especialista)")
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("level") }
+                    })
+                  ],
+                  1
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "actions",
+            fn: function() {
+              return [
+                _c(
+                  "jet-action-message",
+                  {
+                    staticClass: "mr-3",
+                    attrs: { on: _vm.form.recentlySuccessful }
+                  },
+                  [_vm._v("\n        Saved.\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-secondary-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        _vm.showForm = false
+                      }
+                    }
+                  },
+                  [_vm._v("\n        Cancel\n      ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-button",
+                  {
+                    class: { "opacity-25": _vm.form.processing },
+                    attrs: { disabled: _vm.form.processing }
+                  },
+                  [_vm._v("\n        Save\n      ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
