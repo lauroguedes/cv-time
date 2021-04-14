@@ -14,14 +14,17 @@
         <i class="fas fa-pencil-alt"></i>
       </a>
     </h1>
-    <h2
-      v-if="user.employment_histories.length"
-      class="inline-block py-1 px-3 bg-gray-100 text-gray-600 uppercase rounded-2xl mb-5 font-light"
-    >
-      {{ getPresentEmployment.title }}
-      <span class="lowercase font-bold">at</span>
-      {{ getPresentEmployment.company }}
-    </h2>
+    <div>
+      <h2
+        v-for="employment in getPresentEmployment"
+        :key="employment.id"
+        class="inline-block py-1 px-3 m-1 bg-gray-100 text-gray-600 uppercase rounded-2xl mb-5 font-light"
+      >
+        {{ employment.title }}
+        <span class="lowercase font-bold">at</span>
+        {{ employment.company }}
+      </h2>
+    </div>
     <div>
       <span class="border-r px-2"
         ><i class="fas fa-birthday-cake text-indigo-400"></i>
@@ -49,12 +52,13 @@ export default {
       return this.$moment().diff(this.user.profile.date_birth, "years");
     },
     getPresentEmployment() {
-      let employments = _.orderBy(
+      return _.filter(this.user.employment_histories, ["end_date", null]);
+      /* let employments = _.orderBy(
         this.user.employment_histories,
         ["end_date"],
         ["desc"]
       );
-      return _.head(employments);
+      return _.head(employments); */
     },
   },
 };

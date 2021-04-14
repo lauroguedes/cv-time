@@ -2473,6 +2473,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user: Object
@@ -2482,9 +2485,13 @@ __webpack_require__.r(__webpack_exports__);
       return this.$moment().diff(this.user.profile.date_birth, "years");
     },
     getPresentEmployment: function getPresentEmployment() {
-      var employments = _.orderBy(this.user.employment_histories, ["end_date"], ["desc"]);
-
-      return _.head(employments);
+      return _.filter(this.user.employment_histories, ["end_date", null]);
+      /* let employments = _.orderBy(
+        this.user.employment_histories,
+        ["end_date"],
+        ["desc"]
+      );
+      return _.head(employments); */
     }
   }
 });
@@ -48964,22 +48971,25 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm.user.employment_histories.length
-      ? _c(
+    _c(
+      "div",
+      _vm._l(_vm.getPresentEmployment, function(employment) {
+        return _c(
           "h2",
           {
+            key: employment.id,
             staticClass:
-              "inline-block py-1 px-3 bg-gray-100 text-gray-600 uppercase rounded-2xl mb-5 font-light"
+              "inline-block py-1 px-3 m-1 bg-gray-100 text-gray-600 uppercase rounded-2xl mb-5 font-light"
           },
           [
-            _vm._v(
-              "\n    " + _vm._s(_vm.getPresentEmployment.title) + "\n    "
-            ),
+            _vm._v("\n      " + _vm._s(employment.title) + "\n      "),
             _c("span", { staticClass: "lowercase font-bold" }, [_vm._v("at")]),
-            _vm._v("\n    " + _vm._s(_vm.getPresentEmployment.company) + "\n  ")
+            _vm._v("\n      " + _vm._s(employment.company) + "\n    ")
           ]
         )
-      : _vm._e(),
+      }),
+      0
+    ),
     _vm._v(" "),
     _c("div", [
       _c("span", { staticClass: "border-r px-2" }, [
