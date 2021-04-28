@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ->hasSkills(10)
             ->hasLanguages(2)
             ->hasEmploymentHistories(5)
+            ->hasEducation(3)
             ->create([
                 'name' => 'Léo WG',
                 'email' => 'leo@user.com'
