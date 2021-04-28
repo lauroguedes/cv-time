@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EmploymentHistoryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LinkController;
@@ -75,6 +76,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::put('/{employmentHistory}', [EmploymentHistoryController::class, 'update'])
                 ->name('update');
             Route::delete('/{employmentHistory}', [EmploymentHistoryController::class, 'destroy'])
+                ->name('destroy');
+        });
+
+    Route::name('education.')
+        ->prefix('education')
+        ->group(function () {
+            Route::post('/', [EducationController::class, 'store'])
+                ->name('store');
+            Route::put('/{education}', [EducationController::class, 'update'])
+                ->name('update');
+            Route::delete('/{education}', [EducationController::class, 'destroy'])
                 ->name('destroy');
         });
 });

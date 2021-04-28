@@ -65,6 +65,7 @@ class User extends Authenticatable
         'skills',
         'languages',
         'employmentHistories',
+        'education'
     ];
 
     /**
